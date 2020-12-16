@@ -70,6 +70,9 @@
         </tbody>
       </table>
       <p class="p">
+        <button type="button" class="btn btn-warning" onclick="window.location.href='reset.php'">Reset Password</button>
+      </p>
+      <p class="p">
         <button type="button" class="btn btn-danger" onclick="window.location.href='logout.php'">Log Out</button>
         <button type="button" class="btn btn-info" onclick="window.location.href='index.php'">Back</button>
       </p>

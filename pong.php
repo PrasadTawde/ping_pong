@@ -26,6 +26,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <title>Pong Game</title>
         <h1>Pong</h1>
         <button id="startBtn">Start</button>
+        <button type="button" onclick="window.location.href='index.php'">Back to Menu</button>
       </div>
       <div id="pauseMenu">
         <h1>Pause</h1>

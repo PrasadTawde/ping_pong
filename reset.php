@@ -1,5 +1,4 @@
 <?php
-// Initialize the session
 session_start();
  
 // Check if the user is logged in, if not then redirect to login page
@@ -7,11 +6,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
- 
-// Include config file
+
 require_once "config.php";
- 
-// Define variables and initialize with empty values
+
 $new_password = $confirm_password = "";
 $new_password_err = $confirm_password_err = "";
  
@@ -37,17 +34,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
         
-    // Check input errors before updating the database
+    //checking for error
     if(empty($new_password_err) && empty($confirm_password_err)){
         // Prepare an update statement
-        $sql = "UPDATE users SET password = :password WHERE id = :id";
+        $sql = "UPDATE USERS SET USER_PASSWORD = :password WHERE USER_ID = :userid";
         
-        if($stmt = $pdo->prepare($sql)){
-            // Bind variables to the prepared statement as parameters
+        if($stmt = $dbh->prepare($sql)){
             $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
-            $stmt->bindParam(":id", $param_id, PDO::PARAM_INT);
-            
-            // Set parameters
+            $stmt->bindParam(":userid", $param_id, PDO::PARAM_INT);
+
             $param_password = password_hash($new_password, PASSWORD_DEFAULT);
             $param_id = $_SESSION["id"];
             
@@ -60,14 +55,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
-
-            // Close statement
             unset($stmt);
         }
     }
-    
-    // Close connection
-    unset($pdo);
+    unset($dbh);
 }
 ?>
  
@@ -99,7 +90,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
-                <a class="btn btn-link" href="welcome.php">Cancel</a>
+                <a class="btn btn-link" href="index.php">Cancel</a>
             </div>
         </form>
     </div>    
