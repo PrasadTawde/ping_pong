@@ -1,15 +1,12 @@
 <?php
-// Initialize the session
 session_start();
  
-// Check if the user is logged in, if not then redirect him to login page
+// check if user is logged in, if not redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
 ?>
-
-<!-- CREATE TABLE RANKS(RANK_ID INT NOT NULL AUTO_INCREMENT, USER_ID INT, TOTAL_EXP VARCHAR(100), CURRENT_RANK INT, PRIMARY KEY(RANK_ID), FOREIGN KEY(USER_ID) REFERENCES USERS(USER_ID)); -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +27,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
           </button>
         </p>
       </div>
-      <br>
+      <!-- <br> -->
       <div class="div">
         <p class="p">
           <button type="button" onclick="window.location.href='rules.php'">
@@ -38,19 +35,23 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
           </button>
         </p>
       </div>
-      <br>
+      <!-- <br> -->
       
       <div class="div">
         <p class="p">
-          <button type="button" onclick="window.location.href='#'">
+          <button type="button" onclick="window.location.href='ranking.php'">
             Ranking
           </button>
         </p>
       </div>
-      <br>
+      <!-- <br> -->
+      <div class="div">
+        <p class="p">
+          <button type="button" onclick="window.location.href='profile.php'">Profile</button>
+        </p>
+      </div>
+      <!-- <br> -->
     </div>
-  </div>
-
-  
+  </div>  
 </body>
 </html>
